@@ -160,6 +160,19 @@ class ArabesqueWidget(QtWidgets.QWidget):
         self._bevel_seg_spin.setValue(3)
         geo_form.addRow("Bevel Segments:", self._bevel_seg_spin)
 
+        self._edge_len_spin = QtWidgets.QDoubleSpinBox()
+        self._edge_len_spin.setRange(0.0, 50.0)
+        self._edge_len_spin.setValue(0.0)
+        self._edge_len_spin.setDecimals(3)
+        self._edge_len_spin.setSingleStep(0.01)
+        self._edge_len_spin.setSpecialValueText("Auto")
+        self._edge_len_spin.setToolTip(
+            "Target edge length for remeshing (0 = auto-calculate from model size).\n"
+            "Lower values produce denser, more detailed topology.\n"
+            "Higher values produce lighter, cleaner topology."
+        )
+        geo_form.addRow("Mesh Density:", self._edge_len_spin)
+
         root.addWidget(geo_group)
 
         # --- Action buttons ---
@@ -266,6 +279,7 @@ class ArabesqueWidget(QtWidgets.QWidget):
                 depth=self._depth_spin.value(),
                 bevel_width=self._bevel_width_spin.value(),
                 bevel_segments=self._bevel_seg_spin.value(),
+                target_edge_length=self._edge_len_spin.value(),
                 progress_callback=self._update_progress,
             )
 
