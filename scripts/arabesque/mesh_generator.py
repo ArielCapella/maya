@@ -207,7 +207,7 @@ class MeshGenerator:
         cmds.select(mesh)
         mel.eval(
             'polyCleanupArgList 4 '
-            '{ "0","1","1","0","1","0","0","0","0","1e-05",'
+            '{ "1","1","1","0","1","0","0","0","0","1e-05",'
             '"0","1e-05","0","1e-05","0","-1","0","0" }'
         )
         cmds.select(clear=True)
